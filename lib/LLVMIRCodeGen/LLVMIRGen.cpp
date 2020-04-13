@@ -320,7 +320,7 @@ void LLVMIRGen::finishCodeGen() {
 #else
     getTargetMachine().addPassesToEmitFile(
         PM, asmStream, nullptr,
-        llvm::TargetMachine::CodeGenFileType::CGFT_AssemblyFile);
+        llvm::CodeGenFileType::CGFT_AssemblyFile);
 #endif
 
     PM.run(*llmodule_);

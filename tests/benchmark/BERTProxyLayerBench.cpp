@@ -17,6 +17,7 @@
 #include <cstdlib>
 #include <future>
 #include <random>
+#include <memory>
 
 #include "Bench.h"
 
@@ -131,9 +132,9 @@ public:
 
     // Setup host manager
     std::vector<std::unique_ptr<runtime::DeviceConfig>> configs;
-    auto config = llvm::make_unique<runtime::DeviceConfig>(backendStr_);
+    auto config = std::make_unique<runtime::DeviceConfig>(backendStr_);
     configs.push_back(std::move(config));
-    hostManager_ = llvm::make_unique<runtime::HostManager>(std::move(configs));
+    hostManager_ = std::make_unique<runtime::HostManager>(std::move(configs));
 
     std::unique_ptr<Module> mod(new Module);
     auto fn = mod->createFunction("singleNode");
